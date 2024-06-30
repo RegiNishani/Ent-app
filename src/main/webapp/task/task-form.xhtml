@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+<ui:composition template="../layout.xhtml">
+
+	<ui:define name="content">
+		<h:form id="taskForm">
+			<p:panel header="Add Task Form">
+				<h:panelGrid columns="2">
+					<p:outputLabel for="title" value="Task Title: " />
+					<p:inputText id="title" value="#{taskController.task.taskTitle}" />
+
+					<p:outputLabel for="taskDesc" value="Description: " />
+					<p:inputTextarea id="taskDesc" value="#{taskController.task.taskDesc}" />
+
+					<p:outputLabel for="project" value="Project Name:" />
+					<p:selectOneMenu id="project" value="#{taskController.selectedProjectlId}">
+						<f:selectItems value="#{taskController.projects}" var="project" itemValue="#{project.id}" itemLabel="#{project.projectName}" />
+					</p:selectOneMenu>
+
+					<h:outputLabel for="tastType" value="Task Type:" />
+					<p:selectOneMenu id="tastType" value="#{taskController.selectedTaskType}">
+						<f:selectItems value="#{taskController.taskTypes}" var="type"
+									   itemValue="#{type}" itemLabel="#{type.label}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="owner" value="Task Owner: " />
+					<p:selectOneMenu id="owner" value="#{taskController.selectedUserId}">
+						<f:selectItems value="#{taskController.users}" var="user"
+									   itemValue="#{user.id}" itemLabel="#{user.username}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="taskTime" value="Task Time(H): " />
+					<p:inputNumber id="taskTime" value="#{taskController.task.taskTime}" />
+
+					<h:outputLabel for="tastStatus" value="Task Type:" />
+					<p:selectOneMenu id="tastStatus" value="#{taskController.selectedTaskStatus}">
+						<f:selectItems value="#{taskController.taskStatusList}" var="type"
+									   itemValue="#{type}" itemLabel="#{type.label}" />
+					</p:selectOneMenu>
+					<p:spacer height="3"/>
+					<p:spacer height="3"/>
+					<p:spacer height="3"/>
+					<h:commandButton value="Save" action="#{taskController.save}" />
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

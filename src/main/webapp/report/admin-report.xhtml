@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<ui:composition template="../layout.xhtml">
+
+	<ui:define name="content">
+		<h:form id="form">
+			<p:panel header="Report (Emplyee performance report) ">
+				<p:dataTable id="table" var="task" value="#{reportController.tasks}">
+					<p:column>
+						<f:facet name="header"># Id</f:facet>
+						<h:outputText value="#{task.id}" />
+					</p:column>
+
+					<p:column headerText="Task Title" filterBy="#{task.taskTitle}" filterMatchMode="exact">
+						<h:outputText value="#{task.taskTitle}" />
+					</p:column>
+
+					<p:column headerText="Description" filterBy="#{task.taskDesc}" filterMatchMode="contains">
+						<f:facet name="header">Description</f:facet>
+						<h:outputText value="#{task.taskDesc}"/>
+					</p:column>
+
+					<p:column headerText="Task Type" filterBy="#{task.taskType}" filterMatchMode="contains">
+						<f:facet name="header">Task Type</f:facet>
+						<h:outputText value="#{task.taskType}"/>
+					</p:column>
+
+					<p:column headerText="Task Owner" filterBy="#{task.taskOwner}" filterMatchMode="contains">
+						<f:facet name="header">Task Owner</f:facet>
+						<h:outputText value="#{task.taskOwner}"/>
+					</p:column>
+
+					<p:column headerText="Status" filterBy="#{task.taskStatus}" filterMatchMode="contains">
+						<f:facet name="header">Status</f:facet>
+						<h:outputText value="#{task.taskStatus}"/>
+					</p:column>
+
+					<p:column headerText="Time" filterBy="#{task.taskTime}" filterMatchMode="contains">
+						<f:facet name="header">Time</f:facet>
+						<h:outputText value="#{task.taskTime}"/>
+					</p:column>
+
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

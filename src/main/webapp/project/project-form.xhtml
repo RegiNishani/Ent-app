@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+<ui:composition template="../layout.xhtml">
+
+	<ui:define name="content">
+		<h:form id="projectForm">
+			<h:messages style="color: red"/>
+			<p:panel header="Add Project Form">
+				<h:panelGrid columns="2">
+					<p:outputLabel for="name" value="Project Name: " />
+					<p:inputText id="name" value="#{projectController.project.projectName}" required="true" requiredMessage="Project Name is required."/>
+					<p:outputLabel for="address" value="Project Description: " />
+					<p:inputTextarea id="address" value="#{projectController.project.projectDesc}" />
+					<h:outputLabel for="active" value="Active Status:" />
+					<p:selectBooleanCheckbox id="active" value="#{projectController.active}" />
+					<p:spacer height="3"/>
+					<p:spacer height="3"/>
+					<p:spacer height="3"/>
+					<h:commandButton value="Save" action="#{projectController.save}" />
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

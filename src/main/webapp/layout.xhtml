@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<f:view>
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title><ui:insert name="title">Help Desk</ui:insert></title>
+</h:head>
+<h:body>
+	<div class="ui-g">
+		<div class="ui-g-12">
+			<p:growl for="errors" showDetail="true" autoUpdate="true"/>
+		</div>
+		<div class="ui-g-12">
+			<h:panelGroup rendered="#{loginController.loggedInUser != null}">
+				<p:toolbar>
+					<f:facet name="left">
+					<h:panelGroup>
+						<p:spacer width="5"/>
+						<h:outputText value="Help Desk Applicaton " style="padding-right: 600px;"/>
+						<h:outputText value="Welcome, #{loginController.loggedInUser.username}!" style="padding-right: 50px;"/>
+						<p:button style="color: red; alignment: right" href="/" value="Logout" />
+					</h:panelGroup>
+					</f:facet>
+				</p:toolbar>
+				<p:spacer height="10"/>
+			<p:toolbar>
+				<f:facet name="left">
+					<h:panelGroup rendered="#{loginController.isAdmin()}">
+						<p:button href="/user" value="New User" />
+						<p:button href="/user_list" value="User List" />
+						<p:button href="/company" value="Add Company" />
+						<p:button href="/company_list" value="Company List" />
+						<p:button href="/project_list" value="Project List" />
+						<p:button href="/task_list" value="Task List" />
+						<p:button href="/report" value="Report" style="padding-left: 20px;"/>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{loginController.isCustomer()}">
+						<p:button href="/user" value="New User" />
+						<p:button href="/user_list" value="User List" />
+						<p:button href="/project" value="Add Project" />
+						<p:button href="/project_list" value="Project List" />
+						<p:button href="/task" value="Add Task" />
+						<p:button href="/task_list" value="Task List" />
+						<p:button href="/report" value="Report" style="padding-left: 20px;"/>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{loginController.isEmployee()}">
+						<p:button href="/project_list" value="Project List" />
+						<p:button href="/task" value="Add Task" />
+						<p:button href="/task_list" value="Task List" />
+					</h:panelGroup>
+				</f:facet>
+
+			</p:toolbar>
+			</h:panelGroup>
+		</div>
+		<div class="ui-g-12">
+			<ui:insert name="content">Default content</ui:insert>
+		</div>
+	</div>
+</h:body>
+</f:view>
+</html>
